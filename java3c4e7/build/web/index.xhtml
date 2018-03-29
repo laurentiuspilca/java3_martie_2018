@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h1>Adauga produs</h1>
+        <h:form>
+            <p>NUME: <p:inputText value="#{produs.nume}" /></p>
+            <p>PRET: <p:inputText value="#{produs.pret}" /></p>
+            <p><p:commandButton value="Adauga produs" actionListener="#{produs.addProdus()}" update="produseTable" /></p>
+        </h:form>
+
+        <hr />
+
+        <p:dataTable var="p" value="#{produs.produse}" id="produseTable">
+            <p:column>
+                <f:facet name="header">
+                    <p:outputLabel value="ID" />
+                </f:facet>
+                <p:outputLabel value="#{p.id}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <p:outputLabel value="NUME" />
+                </f:facet>
+                <p:outputLabel value="#{p.nume}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <p:outputLabel value="PRET" />
+                </f:facet>
+                <p:outputLabel value="#{p.pret}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <p:outputLabel value="STERGE" />
+                </f:facet>
+                <p:commandLink value="Sterge" actionListener="#{produs.stergeProdus(p)}" update="produseTable" />
+            </p:column>
+        </p:dataTable>
+    </h:body>
+</html>
+
